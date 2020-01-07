@@ -1,0 +1,57 @@
+---
+# Virtual IP que será utilizado pelo Keepalived.
+virtual_ipaddress: "192.168.7.254"
+
+# Hostname do servidor primário haproxy, use o mesmo hostname do inventário.
+# Ex.
+# [all]
+# haproxy-1 ansible_host=1.2.3.4
+haproxy_master: "haproxy-1"
+
+# Selecione o algoritmo de balanceamento: first, leastconn, static-rr or roundrobin.
+balance_algorithm: "roundrobin"
+
+# Selecione o modo HAProxy: layer_7 or layer_4
+haproxy_mode: "layer_7"
+
+# Dominio que está em uso.
+# OBS: Essa configuração é para o modo Layer 7.
+my_domain: "local.lab"
+
+# Para configurar novos APP's basta repetir o bloco de variaveis conforme exemplo abaixo.
+# Ex:
+# new_app:
+#   app_1:
+#     name: "api_1"
+#     port_front: 8070
+#     port_back: 30870
+#     backend: {
+#       "hostname_1": "10.0.0.1",
+#       "hostname_2": "172.16.0.1",
+#       "hostname_3": "192.168.0.1"
+#     }
+#   app_2:
+#     name: "api_2"
+#     port_front: 8071
+#     port_back: 30871
+#     backend: {
+#       "hostname_1": "10.0.0.1", # Finalize a linha com "," caso use mais de um backend.
+#       "hostname_2": "172.16.0.1",
+#       "hostname_3": "192.168.0.1"
+#     }
+
+new_app:
+  app-1:
+    name: "api-1"
+    port_front: 8080
+    port_back: 8080
+    backend: {
+      "webserver-1": "192.168.246.20",
+    }
+  app-2:
+    name: "api-2"
+    port_front: 8081
+    port_back: 8081
+    backend: {
+      "webserver-1": "192.168.246.20",
+    }

@@ -1,0 +1,14 @@
+---
+packages:
+  to_install:
+    - haproxy
+    - keepalived
+  to_remove:
+    -
+
+services:
+  to_enable:
+    - haproxy
+    - keepalived
+  to_disable:
+    -

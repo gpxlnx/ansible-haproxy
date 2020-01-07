@@ -1,0 +1,7 @@
+---
+- name: "Configure a new infraestructure HAProxy HA with Keepalived"
+  hosts:
+    - haproxy
+
+  roles:
+    - {role: haproxy, tags: "haproxy"}
